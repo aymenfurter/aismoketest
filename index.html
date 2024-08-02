@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Services Smoke Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Services Smoke Test</h1>
+        <div id="wizard" class="wizard">
+            <div class="step active" id="step1">
+                <h2>Step 1: Select Test Type</h2>
+                <select id="testType">
+                    <option value="">Select a test type</option>
+                    <option value="openai-chat">Azure OpenAI (Chat)</option>
+                    <option value="openai-embedding">Azure OpenAI (Embedding)</option>
+                    <option value="ai-search">Azure AI Search</option>
+                </select>
+                <button onclick="nextStep()">Next</button>
+            </div>
+
+            <div class="step" id="step2">
+                <h2>Step 2: Enter Details</h2>
+                <div id="openaiChatFields" class="hidden">
+                    <input type="text" id="chatEndpoint" placeholder="Endpoint (e.g., https://xxx.openai.azure.com)">
+                    <input type="text" id="chatApiKey" placeholder="API Key">
+                    <input type="text" id="chatModelName" placeholder="Model Name (e.g., gpt-35-turbo)">
+                    <select id="chatSampleText">
+                        <option value="">Select sample text or enter custom</option>
+                        <option value="Welcome to Contoso's AI department. How can I assist you today?">Welcome to Contoso's AI department. How can I assist you today?</option>
+                        <option value="What are Contoso's latest product updates?">What are Contoso's latest product updates?</option>
+                        <option value="Can you provide insights on Contoso's market performance?">Can you provide insights on Contoso's market performance?</option>
+                        <option value="custom">Enter custom text</option>
+                    </select>
+                    <textarea id="chatCustomText" class="hidden" placeholder="Enter your custom text here"></textarea>
+                </div>
+                <div id="openaiEmbeddingFields" class="hidden">
+                    <input type="text" id="embeddingEndpoint" placeholder="Endpoint (e.g., https://xxx.openai.azure.com)">
+                    <input type="text" id="embeddingApiKey" placeholder="API Key">
+                    <input type="text" id="embeddingModelName" placeholder="Model Name (e.g., text-embedding-ada-002)">
+                    <select id="embeddingSampleText">
+                        <option value="">Select sample text or enter custom</option>
+                        <option value="Contoso's innovative solutions are shaping the future of technology.">Contoso's innovative solutions are shaping the future of technology.</option>
+                        <option value="Exploring the sustainability initiatives at Contoso.">Exploring the sustainability initiatives at Contoso.</option>
+                        <option value="custom">Enter custom text</option>
+                    </select>
+                    <textarea id="embeddingCustomText" class="hidden" placeholder="Enter your custom text here"></textarea>
+                </div>
+                <div id="aiSearchFields" class="hidden">
+                    <input type="text" id="searchEndpoint" placeholder="Search Endpoint (e.g., https://xxx.search.windows.net)">
+                    <input type="text" id="searchApiKey" placeholder="API Key">
+                    <input type="text" id="searchIndex" placeholder="Index Name">
+                    <input type="text" id="searchContentColumn" placeholder="Content Column Name">
+                    <input type="text" id="searchQuery" placeholder="Search Query">
+                </div>
+                <button onclick="previousStep()">Previous</button>
+                <button onclick="runTest()">Run Test</button>
+            </div>
+
+            <div class="step" id="step3">
+                <h2>Step 3: Results</h2>
+                <div id="results"></div>
+                <button onclick="resetWizard()">Start Over</button>
+            </div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
